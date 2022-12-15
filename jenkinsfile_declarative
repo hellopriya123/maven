@@ -1,0 +1,22 @@
+pipeline{
+    agent any
+    stages{
+        stage("Preparation"){
+            steps{
+                echo "Checkout Started"
+                git branch: 'master', credentialsId: 'webhooktoken', url: 'https://github.com/hellopriya123/MavenBuild_new.git'
+                echo "Checkout completed"
+     
+            }
+        }
+        stage("Build"){
+            steps{
+             sh'''
+            ls -lart
+            mvn clean install
+            '''
+            echo "Build Automation"
+            }
+        }
+        }
+    }
